@@ -1,10 +1,8 @@
 package schach.server;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
-import schach.api.List;
 import schach.api.Server;
 
 public class SchachServer extends Server {
@@ -27,6 +25,10 @@ public class SchachServer extends Server {
 
 	@Override
 	public void processMessage(String pClientIP, int pClientPort, String pMessage) {
+		//Client Connection
+		if(pClientIP.startsWith("c")) {
+		}
+		
 		if (pClientIP.startsWith("m")) {
 			String[] vonZu = pClientIP.split("#");
 
