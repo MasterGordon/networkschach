@@ -1,5 +1,8 @@
 # networkschach
 
+0 / false  ist immer schwarz
+1 / true  ist immer weiÃŸ
+
 ## Protokoll
 
 ### Clientpakets
@@ -8,7 +11,7 @@
 
 ### Serverpakets
 * b#0#0000000000000000000000000000000000000000000000000000000000000000
-* e#0#	0=Zug für Figur nicht möglich	1=König absichtlich Schach gesetzt
+* e#0#	0=Zug fÃ¼r Figur nicht mÃ¶glich	1=KÃ¶nig absichtlich Schach gesetzt
 * r#0#  0=Verloren						1=Gewonnen
 
 
