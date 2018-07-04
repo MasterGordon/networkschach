@@ -144,7 +144,7 @@ public class FrameSpielbrett extends JFrame {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
 				if (buttons[i][j].equals(button)) {
-					return i + "," + j;
+					return j + "," + i;
 				}
 			}
 		}
@@ -163,17 +163,15 @@ public class FrameSpielbrett extends JFrame {
 	//
 	@SuppressWarnings("deprecation")
 	public void update(String s) {
+		System.out.println("UPDATE");
 		String[] split = s.split("#");
 		if (split[1].equals("0")) {
-			lblBlack.setBackground(Color.GREEN);
-			lblWhite.setBackground(null);
+			lblBlack.setForeground(Color.RED);
+			lblWhite.setForeground(null);
 		} else {
-			lblWhite.setBackground(Color.GREEN);
-			lblBlack.setBackground(null);
+			lblWhite.setForeground(Color.RED);
+			lblBlack.setForeground(null);
 		}
-
-		if (split[2].length() != 64)
-			return;
 		int index = 0;
 		s = split[2];
 		for (int i = 0; i < 8; i++) {
@@ -188,6 +186,9 @@ public class FrameSpielbrett extends JFrame {
 								.getImage(FrameSpielbrett.class.getResource("/resources/black_"
 										+ Character.toLowerCase(split[2].charAt(index)) + ".png"))));
 					}
+				else
+					buttons[j][i].setIcon(null);
+					
 				index++;
 			}
 		}
@@ -207,9 +208,9 @@ public class FrameSpielbrett extends JFrame {
 					}
 					timeLeft--;
 					if (timeLeft % 60 < 10)
-						timerTime.setText("time left: " + timeLeft / 60 + ":0" + timeLeft % 60);
+						timerLeft.setText("time left: " + timeLeft / 60 + ":0" + timeLeft % 60);
 					else
-						timerTime.setText("time left: " + timeLeft / 60 + ":" + timeLeft % 60);
+						timerLeft.setText("time left: " + timeLeft / 60 + ":" + timeLeft % 60);
 				}
 			}
 		});

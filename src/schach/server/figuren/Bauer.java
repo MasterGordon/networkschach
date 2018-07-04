@@ -1,6 +1,5 @@
 package schach.server.figuren;
 
-
 public class Bauer extends Figur {
 
 	public Bauer(boolean weiß, int x) {
@@ -13,24 +12,23 @@ public class Bauer extends Figur {
 			posy = 6;
 		}
 	}
-	
+
 	@Override
 	public String toString() {
-		return farbe?"P":"p";
+		return farbe ? "P" : "p";
 	}
 
 	public boolean bewegungErlaubt(int x, int y) {
-		System.out.println(x+" "+y);
+		System.out.println(x + " " + y);
 		if (farbe == true) {
-			if (y == posy + 1 && x == posx && brett.figuren[posx][y] == null
-					|| posy == 2 && y == posy + 2 && x == 0 && brett.figuren[posx][y] == null
-
+			if (y == posy + 1 && x == posx && brett.figuren[x][y] == null
+					|| y == posy + 2 && x == 0 && brett.figuren[x][y] == null
 					|| y == posy + 1 && x == posx + 1 && brett.figuren[x][y] != null
 					|| y == posy + 1 && x == posx - 1 && brett.figuren[x][y] != null) {
 				return true;
 			}
 		} else {
-			if (y == posy - 1 && x == 0 && brett.figuren[posx][y] == null
+			if (y == posy - 1 && x == posx && brett.figuren[posx][y] == null
 					|| posy == 6 && y == posy - 2 && x == 0 && brett.figuren[posx][y] == null
 					|| y == posy - 1 && x == posx + 1 && brett.figuren[x][y] != null
 					|| y == posy - 1 && x == posx - 1 && brett.figuren[x][y] != null) {

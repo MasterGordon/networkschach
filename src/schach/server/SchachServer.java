@@ -68,7 +68,7 @@ public class SchachServer extends Server {
 				brett.spielerSchwarz.send("r#0");
 				brett.spielerWeiß.send("r#1");
 				closeGame(client.session);
-			}else {
+			} else {
 				brett.spielerSchwarz.send("r#1");
 				brett.spielerWeiß.send("r#0");
 				closeGame(client.session);
@@ -84,8 +84,10 @@ public class SchachServer extends Server {
 
 	public void closeGame(int session) {
 		Brett brett = sessions.get(session);
-		brett.spielerSchwarz.close();
-		brett.spielerWeiß.close();
+		if (connectedClients.values().contains(brett.spielerSchwarz))
+			brett.spielerSchwarz.close();
+		if (connectedClients.values().contains(brett.spielerWeiß))
+			brett.spielerWeiß.close();
 		sessions.remove(session);
 	}
 }

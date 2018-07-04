@@ -37,6 +37,7 @@ public class MainClient {
 			fg = new FrameSpielbrett(this);
 			fg.setVisible(true);
 			fg.update(pMessage);
+			fg.setTitle("Schach - Ingame - "+(weiß?"weiß":"schwarz"));
 			// SPIELBRETT UPDATE
 		} else if (message[0].equals("b")) {
 			fg.update(pMessage);
