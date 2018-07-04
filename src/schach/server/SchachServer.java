@@ -29,7 +29,7 @@ public class SchachServer extends Server {
 		// Client Connection
 		if (pMessage.startsWith("c")) {
 			int session = Integer.parseInt(pMessage.split("#")[1]);
-			if (sessions.containsKey(sessions)) {
+			if (sessions.containsKey(session)) {
 				// F‹RGE CLIENT ZU SESSION + STARTE SESSION
 				Brett brett = sessions.get(session);
 				brett.spielerSchwarz = client;
@@ -44,8 +44,10 @@ public class SchachServer extends Server {
 		}
 
 		if (pMessage.startsWith("m")) {
-			String[] vonZu = pMessage.split("#");
-
+			Brett brett = sessions.get(client.session);
+			if (client.equals(brett.getCurrentSpieler())) {
+				brett.move(pMessage.split("#")[1], pMessage.split("#")[0]);
+			}
 		}
 	}
 
@@ -60,6 +62,9 @@ public class SchachServer extends Server {
 	}
 
 	public void closeGame(int session) {
-		Brett brett = sessions.get(sessions);
+		Brett brett = sessions.get(session);
+		brett.spielerSchwarz.close();
+		brett.spielerWeiﬂ.close();
+		sessions.remove(session);
 	}
 }

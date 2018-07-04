@@ -1,8 +1,5 @@
 package schach.client;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -19,6 +16,10 @@ import java.awt.event.ActionEvent;
 
 public class FrameLogin extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6458368637515229905L;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -28,8 +29,8 @@ public class FrameLogin extends JFrame {
 	 * Create the frame.
 	 */
 	
-	public FrameLogin(MainClient main) {
-		this.main = main;
+	public FrameLogin(MainClient mainc) {
+		this.main = mainc;
 		setResizable(false);
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

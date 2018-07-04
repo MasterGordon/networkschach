@@ -1,6 +1,5 @@
 package schach.client;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
@@ -17,16 +16,18 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import javax.swing.JTextPane;
 
 public class FrameSpielbrett extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8055616106236501671L;
 	private JPanel contentPane;
 	private JButton[][] buttons;
 	private boolean firstClick = false;
 	private JButton firstButton = null;
 	private String firstCoord = "";
-	private boolean currentPlayer = false;
 	private JLabel lblBlack;
 	private JLabel lblWhite;
 	private JLabel timerLeft;
@@ -165,6 +166,7 @@ public class FrameSpielbrett extends JFrame {
 	// tbhkqhbt
 
 	//
+	@SuppressWarnings("deprecation")
 	public void update(String s) {
 		String[] split = s.split("#");
 		if (split[1].equals("0")) {

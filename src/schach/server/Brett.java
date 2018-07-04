@@ -9,7 +9,7 @@ import schach.server.figuren.Springer;
 import schach.server.figuren.Turm;
 
 public class Brett {
-	boolean werIstDran = true;//true = weiﬂ
+	boolean werIstDran = true;// true = weiﬂ
 	public Figur[][] figuren;
 	SchachClient spielerSchwarz;
 	SchachClient spielerWeiﬂ;
@@ -48,34 +48,33 @@ public class Brett {
 	}
 
 	public void sendUpdate() {
-		String packet = "b#"+(werIstDran?"1":"0")+"#"+toString();
+		String packet = "b#" + (werIstDran ? "1" : "0") + "#" + toString();
 		spielerSchwarz.send(packet);
 		spielerWeiﬂ.send(packet);
 	}
-	
-	public void move(String from,String to) {
+
+	public void move(String from, String to) {
 		int fromX = Integer.parseInt(from.split(",")[0]);
 		int fromY = Integer.parseInt(from.split(",")[1]);
 		int toX = Integer.parseInt(to.split(",")[0]);
 		int toY = Integer.parseInt(to.split(",")[1]);
-		if(figuren[fromX][fromY].bewegungErlaubt(toX, toY)) {
-			if(figuren[toX][toY] instanceof Koenig) {
-				//SPIELER HAT GEWONNEN
-				if(werIstDran) {
-					spielerSchwarz.send("r#0");
-					spielerWeiﬂ.send("r#1");
-				}else {
-					spielerSchwarz.send("r#1");
-					spielerWeiﬂ.send("r#0");
-				}
+		if (figuren[fromX][fromY].bewegungErlaubt(toX, toY)) {
+			if (figuren[toX][toY] instanceof Koenig) {
+				// SPIELER HAT GEWONNEN
+				getNotCurrentSpieler().send("r#0");
+				getCurrentSpieler().send("r#1");
+
 				server.closeGame(session);
 			}
 			figuren[toX][toY] = figuren[fromX][fromY];
 			figuren[fromX][fromY] = null;
 			sendUpdate();
+			werIstDran = !werIstDran;
+		} else {
+			getCurrentSpieler().send("e#0");
 		}
 	}
-	
+
 	@Override
 	public String toString() {
 		String string = "";
@@ -87,6 +86,20 @@ public class Brett {
 					string += figuren[i][j].toString();
 			}
 		return string;
+	}
+
+	public SchachClient getCurrentSpieler() {
+		if (werIstDran)
+			return spielerWeiﬂ;
+		else
+			return spielerSchwarz;
+	}
+
+	public SchachClient getNotCurrentSpieler() {
+		if (!werIstDran)
+			return spielerWeiﬂ;
+		else
+			return spielerSchwarz;
 	}
 
 }
