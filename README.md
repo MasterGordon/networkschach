@@ -22,4 +22,3 @@
   - großer Buchstabe = schwarz
 * e#0	0=Zug für Figur nicht möglich	1=König absichtlich Schach gesetzt
 * r#0 0=Verloren						1=Gewonnen
-*
