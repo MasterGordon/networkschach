@@ -22,13 +22,9 @@ public class Bauer extends Figur {
 	public boolean bewegungErlaubt(int x, int y) {
 		System.out.println(x+" "+y);
 		if (farbe == true) {
-<<<<<<< HEAD
 			if (y == posy + 1 && x == posx && brett.figuren[posx][y] == null
 					|| posy == 2 && y == posy + 2 && x == 0 && brett.figuren[posx][y] == null
-=======
-			if (y == posy + 1 && x == 0 && brett.figuren[posx][y] == null
-					|| posy == 1 && y == posy + 2 && x == 0 && brett.figuren[posx][y] == null
->>>>>>> 65f5697ba093edd3fb6e4032e6a30b5444d3e87d
+
 					|| y == posy + 1 && x == posx + 1 && brett.figuren[x][y] != null
 					|| y == posy + 1 && x == posx - 1 && brett.figuren[x][y] != null) {
 				return true;
