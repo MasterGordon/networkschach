@@ -30,8 +30,9 @@ public class MainClient {
 				weiß = false;
 			else
 				weiß = true;
-			fw.dispose();
+			//fw.dispose();
 			fg = new FrameSpielbrett(this);
+			fg.setVisible(true);
 			fg.update(pMessage);
 			// SPIELBRETT UPDATE
 		} else if (message[0].equals("b")) {

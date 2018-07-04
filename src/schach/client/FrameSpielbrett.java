@@ -93,7 +93,8 @@ public class FrameSpielbrett extends JFrame {
 		for (int i = 0; i < 8; i++) {
 			buttons[i] = new JButton[8];
 			for (int j = 0; j < 8; j++) {
-				JButton button = new JButton((i+j)%2==0?new ColorIcon(Color.BLACK, 64, 64):new ColorIcon(Color.WHITE, 64, 64));
+				JButton button = new JButton(
+						(i + j) % 2 == 0 ? new ColorIcon(Color.BLACK, 64, 64) : new ColorIcon(Color.WHITE, 64, 64));
 				button.setBounds(10 + 64 * i, 10 + 64 * j, 64, 64);
 				contentPane.add(button);
 				button.addActionListener(new ActionListener() {
@@ -174,17 +175,19 @@ public class FrameSpielbrett extends JFrame {
 		if (split[2].length() != 64)
 			return;
 		int index = 0;
+		s = split[2];
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				if (Character.isLowerCase(s.charAt(index))) {
-					buttons[i][j].setIcon(
-							new ImageIcon(Toolkit.getDefaultToolkit().getImage(FrameSpielbrett.class.getResource(
-									"/resources/white_" + Character.toLowerCase(split[2].charAt(index)) + ".png"))));
-				} else {
-					buttons[i][j].setIcon(
-							new ImageIcon(Toolkit.getDefaultToolkit().getImage(FrameSpielbrett.class.getResource(
-									"/resources/black_" + Character.toLowerCase(split[2].charAt(index)) + ".png"))));
-				}
+				if (s.charAt(index) != '0')
+					if (Character.isLowerCase(s.charAt(index))) {
+						buttons[i][j].setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+								.getImage(FrameSpielbrett.class.getResource("/resources/white_"
+										+ Character.toLowerCase(split[2].charAt(index)) + ".png"))));
+					} else {
+						buttons[i][j].setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+								.getImage(FrameSpielbrett.class.getResource("/resources/black_"
+										+ Character.toLowerCase(split[2].charAt(index)) + ".png"))));
+					}
 				index++;
 			}
 		}
