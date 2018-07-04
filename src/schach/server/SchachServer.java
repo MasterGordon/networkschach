@@ -33,8 +33,8 @@ public class SchachServer extends Server {
 				//F‹RGE CLIENT ZU SESSION + STARTE SESSION
 				Brett brett = sessions.get(session);
 				brett.spielerSchwarz = client;
-				brett.spielerSchwarz.send("i#1#"+brett.toString());
-				brett.spielerWeiﬂ.send("i#1#"+brett.toString());
+				brett.spielerSchwarz.send("i#1#"+brett.toString()+"#0");
+				brett.spielerWeiﬂ.send("i#1#"+brett.toString()+"#1");
 			}else {
 				//ERSTELLE NEUE SESSION
 				Brett brett = new Brett();
