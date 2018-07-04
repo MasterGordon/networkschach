@@ -10,8 +10,16 @@
 * c#SESSION
 
 ### Serverpakets
-* b#0#0000000000000000000000000000000000000000000000000000000000000000
-* e#0#	0=Zug für Figur nicht möglich	1=König absichtlich Schach gesetzt
-* r#0#  0=Verloren						1=Gewonnen
-
-
+* i#FarbeDieDranIst#SpielFeldReiheFürReihe#EigeneFarbe
+* b#FarbeDieDranIst#SpielFeldReiheFürReihe
+  - Q = Dame
+  - K = König
+  - R = Läufer
+  - H = Springer
+  - P = Bauer
+  - T = Turm
+  - kleiner Buchstabe = white
+  - großer Buchstabe = schwarz
+* e#0	0=Zug für Figur nicht möglich	1=König absichtlich Schach gesetzt
+* r#0 0=Verloren						1=Gewonnen
+*
