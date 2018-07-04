@@ -12,17 +12,21 @@ public class MainClient {
 	boolean weiß;
 	public static MainClient instance;
 
+	public MainClient() {
+		fl = new FrameLogin(this);
+		fl.setVisible(true);
+	}
+	
 	public static void main(String[] args) {
 		instance = new MainClient();
-		instance.fl = new FrameLogin(instance);
-
 	}
 
 	public void processMessage(String pMessage) {
+		System.out.println(pMessage);
 		String[] message = pMessage.split("#");
 		// SPIELBRETT INIT
-		if (message[0] == "i") {
-			if (message[3] == "0")
+		if (message[0].equals("i")) {
+			if (message[3].equals("0"))
 				weiß = false;
 			else
 				weiß = true;
@@ -30,10 +34,10 @@ public class MainClient {
 			fg = new FrameSpielbrett(this);
 			fg.update(pMessage);
 			// SPIELBRETT UPDATE
-		} else if (message[0] == "b") {
+		} else if (message[0].equals("b")) {
 			fg.update(pMessage);
 			// FEHLER NACHRICHT
-		} else if (message[0] == "e") {
+		} else if (message[0].equals("e")) {
 			fg.setBackground(Color.RED);
 			try {
 				Thread.sleep(100);
@@ -43,8 +47,8 @@ public class MainClient {
 			}
 			fg.setBackground(null);
 			// ERGEBNISS NACHRICHT
-		} else if (message[0] == "r") {
-			if (message[1] == "1") {
+		} else if (message[0].equals("r")) {
+			if (message[1].equals("1")) {
 				System.out.println("Du hast gewonnen!");
 			} else {
 				System.out.println("Du hast verloren!");
@@ -57,10 +61,10 @@ public class MainClient {
 
 			@Override
 			public void processMessage(String pMessage) {
-				this.processMessage(pMessage);
-
+				instance.processMessage(pMessage);
 			}
 		};
+			
 		client.send("c#" + session);
 		instance.fl.dispose();
 		fw = new FrameWait();

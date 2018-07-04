@@ -11,6 +11,9 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
+
+import schach.api.ColorIcon;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -90,7 +93,7 @@ public class FrameSpielbrett extends JFrame {
 		for (int i = 0; i < 8; i++) {
 			buttons[i] = new JButton[8];
 			for (int j = 0; j < 8; j++) {
-				JButton button = new JButton("");
+				JButton button = new JButton((i+j)%2==0?new ColorIcon(Color.BLACK, 64, 64):new ColorIcon(Color.WHITE, 64, 64));
 				button.setBounds(10 + 64 * i, 10 + 64 * j, 64, 64);
 				contentPane.add(button);
 				button.addActionListener(new ActionListener() {
