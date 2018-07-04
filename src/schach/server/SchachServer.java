@@ -59,8 +59,17 @@ public class SchachServer extends Server {
 
 	@Override
 	public void processClosingConnection(String pClientIP, int pClientPort) {
-		// TODO Auto-generated method stub
-
+		SchachClient client = connectedClients.get(pClientIP + ":" + pClientPort);
+		Brett brett = sessions.get(client.session);
+		if (brett.spielerSchwarz.equals(client)) {
+			brett.spielerSchwarz.send("r#0");
+			brett.spielerWeiß.send("r#1");
+			closeGame(client.session);
+		}else {
+			brett.spielerSchwarz.send("r#1");
+			brett.spielerWeiß.send("r#0");
+			closeGame(client.session);
+		}
 	}
 
 	private void log(String s) {
