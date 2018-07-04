@@ -30,7 +30,7 @@ public class SchachServer extends Server {
 		if (pMessage.startsWith("c")) {
 			int session = Integer.parseInt(pMessage.split("#")[1]);
 			if (sessions.containsKey(session)) {
-				// F�RGE CLIENT ZU SESSION + STARTE SESSION
+				// FÜRGE CLIENT ZU SESSION + STARTE SESSION
 				log("Joining Session"+session+" "+client);
 				Brett brett = sessions.get(session);
 				brett.spielerSchwarz = client;

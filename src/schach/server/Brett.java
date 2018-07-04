@@ -58,19 +58,23 @@ public class Brett {
 		int fromY = Integer.parseInt(from.split(",")[1]);
 		int toX = Integer.parseInt(to.split(",")[0]);
 		int toY = Integer.parseInt(to.split(",")[1]);
-		if (figuren[fromX][fromY].bewegungErlaubt(toX, toY)) {
-			if (figuren[toX][toY] instanceof Koenig) {
-				// SPIELER HAT GEWONNEN
-				getNotCurrentSpieler().send("r#0");
-				getCurrentSpieler().send("r#1");
-
-				server.closeGame(session);
+		try {
+			if (figuren[fromX][fromY].bewegungErlaubt(toX, toY)) {
+				if (figuren[toX][toY] instanceof Koenig) {
+					// SPIELER HAT GEWONNEN
+					getNotCurrentSpieler().send("r#0");
+					getCurrentSpieler().send("r#1");
+					
+					server.closeGame(session);
+				}
+				figuren[toX][toY] = figuren[fromX][fromY];
+				figuren[fromX][fromY] = null;
+				sendUpdate();
+				werIstDran = !werIstDran;
+			} else {
+				getCurrentSpieler().send("e#0");
 			}
-			figuren[toX][toY] = figuren[fromX][fromY];
-			figuren[fromX][fromY] = null;
-			sendUpdate();
-			werIstDran = !werIstDran;
-		} else {
+		} catch (Exception e) {
 			getCurrentSpieler().send("e#0");
 		}
 	}
