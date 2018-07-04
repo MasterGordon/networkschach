@@ -63,12 +63,12 @@ public class FrameLogin extends JFrame {
 		lblUsername.setBounds(10, 111, 102, 39);
 		contentPane.add(lblUsername);
 
-		JTextField label = new JTextField("0.0.0.0");
+		JTextField label = new JTextField("127.0.0.1");
 		label.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
 		label.setBounds(122, 11, 102, 39);
 		contentPane.add(label);
 
-		textField = new JTextField("1005");
+		textField = new JTextField("1010");
 		textField.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
 		textField.setBounds(122, 61, 102, 39);
 		contentPane.add(textField);
