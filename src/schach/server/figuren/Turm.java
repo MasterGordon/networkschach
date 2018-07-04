@@ -3,9 +3,9 @@ package schach.server.figuren;
 
 public class Turm extends Figur {
 
-	public Turm(boolean weiﬂ, int x) {
+	public Turm(boolean wei√ü, int x) {
 		super();
-		farbe = weiﬂ;
+		farbe = wei√ü;
 		posx = x;
 		if (farbe == true) {
 			posy = 0;

@@ -9,7 +9,7 @@ public class MainClient {
 	FrameWait fw;
 	FrameSpielbrett fg;
 	Client client;
-	boolean weiﬂ;
+	boolean wei√ü;
 	public static MainClient instance;
 
 	public static void main(String[] args) {
@@ -23,9 +23,9 @@ public class MainClient {
 		// SPIELBRETT INIT
 		if (message[0] == "i") {
 			if (message[3] == "0")
-				weiﬂ = false;
+				wei√ü = false;
 			else
-				weiﬂ = true;
+				wei√ü = true;
 			fw.dispose();
 			fg = new FrameSpielbrett(this);
 			fg.update(pMessage);

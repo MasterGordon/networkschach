@@ -3,9 +3,9 @@ package schach.server.figuren;
 
 public class Dame extends Figur {
 
-	public Dame(boolean weiﬂ) {
+	public Dame(boolean wei√ü) {
 		super();
-		farbe = weiﬂ;
+		farbe = wei√ü;
 		posx = 3;
 		if (farbe == true) {
 			posy = 0;

@@ -3,9 +3,9 @@ package schach.server.figuren;
 
 public class Laeufer extends Figur {
 
-	public Laeufer(boolean weiﬂ, int x) {
+	public Laeufer(boolean wei√ü, int x) {
 		super();
-		farbe = weiﬂ;
+		farbe = wei√ü;
 		posx = x;
 		if (farbe == true) {
 			posy = 0;

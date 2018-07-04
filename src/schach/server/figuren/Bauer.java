@@ -3,9 +3,9 @@ package schach.server.figuren;
 
 public class Bauer extends Figur {
 
-	public Bauer(boolean weiﬂ, int x) {
+	public Bauer(boolean wei√ü, int x) {
 		super();
-		farbe = weiﬂ;
+		farbe = wei√ü;
 		posx = x;
 		if (farbe == true) {
 			posy = 1;

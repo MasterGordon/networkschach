@@ -9,10 +9,10 @@ import schach.server.figuren.Springer;
 import schach.server.figuren.Turm;
 
 public class Brett {
-	boolean werIstDran = true;// true = weiﬂ
+	boolean werIstDran = true;// true = weiÔøΩ
 	public Figur[][] figuren;
 	SchachClient spielerSchwarz;
-	SchachClient spielerWeiﬂ;
+	SchachClient spielerWei√ü;
 	SchachServer server;
 	int session;
 
@@ -50,7 +50,7 @@ public class Brett {
 	public void sendUpdate() {
 		String packet = "b#" + (werIstDran ? "1" : "0") + "#" + toString();
 		spielerSchwarz.send(packet);
-		spielerWeiﬂ.send(packet);
+		spielerWei√ü.send(packet);
 	}
 
 	public void move(String from, String to) {
@@ -90,14 +90,14 @@ public class Brett {
 
 	public SchachClient getCurrentSpieler() {
 		if (werIstDran)
-			return spielerWeiﬂ;
+			return spielerWei√ü;
 		else
 			return spielerSchwarz;
 	}
 
 	public SchachClient getNotCurrentSpieler() {
 		if (!werIstDran)
-			return spielerWeiﬂ;
+			return spielerWei√ü;
 		else
 			return spielerSchwarz;
 	}

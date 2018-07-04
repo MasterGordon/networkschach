@@ -3,9 +3,9 @@ package schach.server.figuren;
 
 public class Koenig extends Figur {
 
-	public Koenig(boolean weiﬂ) {
+	public Koenig(boolean wei√ü) {
 		super();
-		farbe = weiﬂ;
+		farbe = wei√ü;
 		posx = 4;
 		if (farbe == true) {
 			posy = 0;

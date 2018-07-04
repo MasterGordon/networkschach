@@ -3,9 +3,9 @@ package schach.server.figuren;
 
 public class Springer extends Figur {
 
-	public Springer(boolean weiﬂ, int x) {
+	public Springer(boolean wei√ü, int x) {
 		super();
-		farbe = weiﬂ;
+		farbe = wei√ü;
 		posx = x;
 		if (farbe == true) {
 			posy = 0;
