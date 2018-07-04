@@ -30,15 +30,19 @@ public class SchachServer extends Server {
 		if (pMessage.startsWith("c")) {
 			int session = Integer.parseInt(pMessage.split("#")[1]);
 			if (sessions.containsKey(session)) {
-				// FÜRGE CLIENT ZU SESSION + STARTE SESSION
-				log("Joining Session"+session+" "+client);
-				Brett brett = sessions.get(session);
-				brett.spielerSchwarz = client;
-				brett.spielerSchwarz.send("i#1#" + brett.toString() + "#0");
-				brett.spielerWeiß.send("i#1#" + brett.toString() + "#1");
+				if (sessions.get(session).spielerSchwarz == null) {
+					// FÜRGE CLIENT ZU SESSION + STARTE SESSION
+					log("Joining Session" + session + " " + client);
+					Brett brett = sessions.get(session);
+					brett.spielerSchwarz = client;
+					brett.spielerSchwarz.send("i#1#" + brett.toString() + "#0");
+					brett.spielerWeiß.send("i#1#" + brett.toString() + "#1");
+				} else {
+					client.send("e#2");
+				}
 			} else {
 				// ERSTELLE NEUE SESSION
-				log("Creating Session"+session+" for "+client);
+				log("Creating Session" + session + " for " + client);
 				Brett brett = new Brett(this, session);
 				brett.spielerWeiß = client;
 				sessions.put(session, brett);
