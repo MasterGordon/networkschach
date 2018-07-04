@@ -63,9 +63,9 @@ public class Brett {
 			return;
 		}
 		log(fromX+","+fromY+" "+toX+","+toY);
-		log(figuren[fromX][fromY].getClass() + "  " + figuren[fromX][fromY].bewegungErlaubt(toX, toY));
+		//log(figuren[fromX][fromY].getClass() + "  " + figuren[fromX][fromY].bewegungErlaubt(toX, toY));
 		try {
-			if (figuren[fromX][fromY].bewegungErlaubt(toX, toY)) {
+			if (figuren[fromX][fromY].bewegungErlaubt(fromX-toX, fromY-toY)) {
 				if (figuren[toX][toY] instanceof Koenig) {
 					// SPIELER HAT GEWONNEN
 					getNotCurrentSpieler().send("r#0");

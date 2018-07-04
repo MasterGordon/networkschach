@@ -180,11 +180,11 @@ public class FrameSpielbrett extends JFrame {
 			for (int j = 0; j < 8; j++) {
 				if (s.charAt(index) != '0')
 					if (Character.isLowerCase(s.charAt(index))) {
-						buttons[i][j].setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+						buttons[j][i].setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
 								.getImage(FrameSpielbrett.class.getResource("/resources/white_"
 										+ Character.toLowerCase(split[2].charAt(index)) + ".png"))));
 					} else {
-						buttons[i][j].setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
+						buttons[j][i].setIcon(new ImageIcon(Toolkit.getDefaultToolkit()
 								.getImage(FrameSpielbrett.class.getResource("/resources/black_"
 										+ Character.toLowerCase(split[2].charAt(index)) + ".png"))));
 					}
