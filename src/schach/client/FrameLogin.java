@@ -22,13 +22,13 @@ public class FrameLogin extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
-	private Main main;
+	private MainClient main;
 	
 	/**
 	 * Create the frame.
 	 */
 	
-	public FrameLogin(Main main) {
+	public FrameLogin(MainClient main) {
 		this.main = main;
 		setResizable(false);
 		try {

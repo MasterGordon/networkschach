@@ -4,16 +4,16 @@ import java.awt.Color;
 
 import schach.api.Client;
 
-public class Main {
+public class MainClient {
 	FrameLogin fl;
 	FrameWait fw;
 	FrameSpielbrett fg;
 	Client client;
 	boolean weiﬂ;
-	public static Main instance;
+	public static MainClient instance;
 
 	public static void main(String[] args) {
-		instance = new Main();
+		instance = new MainClient();
 		instance.fl = new FrameLogin(instance);
 
 	}

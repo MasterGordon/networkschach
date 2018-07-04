@@ -1,10 +1,9 @@
 package schach.server;
 
 
-public class Main {
+public class MainServer {
 	
 	public static void main(String[] args) {
-		System.out.println(new Brett().toString());
 
 	}
 

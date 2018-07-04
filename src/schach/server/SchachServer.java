@@ -18,31 +18,31 @@ public class SchachServer extends Server {
 	public void processNewConnection(String pClientIP, int pClientPort) {
 		// TODO Auto-generated method stub
 		SchachClient client = new SchachClient(pClientIP, pClientPort, this);
-		connectedClients.put(pClientIP+":"+pClientPort, client);
-		log(pClientIP+":"+pClientPort + " has connected!");
+		connectedClients.put(pClientIP + ":" + pClientPort, client);
+		log(pClientIP + ":" + pClientPort + " has connected!");
 	}
 
 	@Override
 	public void processMessage(String pClientIP, int pClientPort, String pMessage) {
-		SchachClient client = connectedClients.get(pClientIP+":"+pClientPort);
-		
-		//Client Connection
-		if(pMessage.startsWith("c")) {
+		SchachClient client = connectedClients.get(pClientIP + ":" + pClientPort);
+
+		// Client Connection
+		if (pMessage.startsWith("c")) {
 			int session = Integer.parseInt(pMessage.split("#")[1]);
-			if(sessions.containsKey(sessions)) {
-				//F‹RGE CLIENT ZU SESSION + STARTE SESSION
+			if (sessions.containsKey(sessions)) {
+				// F‹RGE CLIENT ZU SESSION + STARTE SESSION
 				Brett brett = sessions.get(session);
 				brett.spielerSchwarz = client;
-				brett.spielerSchwarz.send("i#1#"+brett.toString()+"#0");
-				brett.spielerWeiﬂ.send("i#1#"+brett.toString()+"#1");
-			}else {
-				//ERSTELLE NEUE SESSION
-				Brett brett = new Brett();
+				brett.spielerSchwarz.send("i#1#" + brett.toString() + "#0");
+				brett.spielerWeiﬂ.send("i#1#" + brett.toString() + "#1");
+			} else {
+				// ERSTELLE NEUE SESSION
+				Brett brett = new Brett(this, session);
 				brett.spielerWeiﬂ = client;
 				sessions.put(session, brett);
 			}
 		}
-		
+
 		if (pMessage.startsWith("m")) {
 			String[] vonZu = pMessage.split("#");
 
@@ -57,5 +57,9 @@ public class SchachServer extends Server {
 
 	private void log(String s) {
 		System.out.println(s);
+	}
+
+	public void closeGame(int session) {
+		Brett brett = sessions.get(sessions);
 	}
 }

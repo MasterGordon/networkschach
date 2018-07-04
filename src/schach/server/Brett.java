@@ -1,11 +1,16 @@
 package schach.server;
 
 public class Brett {
+	boolean werIstDran = true;//true = weiﬂ
 	Figur[][] figuren;
 	SchachClient spielerSchwarz;
 	SchachClient spielerWeiﬂ;
+	SchachServer server;
+	int session;
 
-	public Brett() {
+	public Brett(SchachServer server, int session) {
+		this.session = session;
+		this.server = server;
 		figuren = new Figur[8][8];
 		// for(int i=0;i<8;i++) {
 		// figuren[i] = new Figur[8];
@@ -34,6 +39,34 @@ public class Brett {
 		}
 	}
 
+	public void sendUpdate() {
+		String packet = "b#"+(werIstDran?"1":"0")+"#"+toString();
+		spielerSchwarz.send(packet);
+		spielerWeiﬂ.send(packet);
+	}
+	
+	public void move(String from,String to) {
+		int fromX = Integer.parseInt(from.split(",")[0]);
+		int fromY = Integer.parseInt(from.split(",")[1]);
+		int toX = Integer.parseInt(to.split(",")[0]);
+		int toY = Integer.parseInt(to.split(",")[1]);
+		if(figuren[fromX][fromY].bewegungErlaubt(toX, toY)) {
+			if(figuren[toX][toY] instanceof Koenig) {
+				//SPIELER HAT GEWONNEN
+				if(werIstDran) {
+					spielerSchwarz.send("r#0");
+					spielerWeiﬂ.send("r#1");
+				}else {
+					spielerSchwarz.send("r#1");
+					spielerWeiﬂ.send("r#0");
+				}
+			}
+			figuren[toX][toY] = figuren[fromX][fromY];
+			figuren[fromX][fromY] = null;
+			sendUpdate();
+		}
+	}
+	
 	@Override
 	public String toString() {
 		String string = "";
