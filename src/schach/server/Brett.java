@@ -58,6 +58,12 @@ public class Brett {
 		int fromY = Integer.parseInt(from.split(",")[1]);
 		int toX = Integer.parseInt(to.split(",")[0]);
 		int toY = Integer.parseInt(to.split(",")[1]);
+		if(figuren[fromX][fromY]==null) {
+			getCurrentSpieler().send("e#0");
+			return;
+		}
+		log(fromX+","+fromY+" "+toX+","+toY);
+		log(figuren[fromX][fromY].getClass() + "  " + figuren[fromX][fromY].bewegungErlaubt(toX, toY));
 		try {
 			if (figuren[fromX][fromY].bewegungErlaubt(toX, toY)) {
 				if (figuren[toX][toY] instanceof Koenig) {
@@ -104,6 +110,10 @@ public class Brett {
 			return spielerWeiß;
 		else
 			return spielerSchwarz;
+	}
+	
+	public void log(String s) {
+		System.out.println("["+session+"] "+s);
 	}
 
 }

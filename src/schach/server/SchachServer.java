@@ -32,7 +32,8 @@ public class SchachServer extends Server {
 			if (sessions.containsKey(session)) {
 				if (sessions.get(session).spielerSchwarz == null) {
 					// FÜRGE CLIENT ZU SESSION + STARTE SESSION
-					log("Joining Session" + session + " " + client);
+					log("Joining Session [" + session + "] " + client);
+					client.session = session;
 					Brett brett = sessions.get(session);
 					brett.spielerSchwarz = client;
 					brett.spielerSchwarz.send("i#1#" + brett.toString() + "#0");
@@ -42,8 +43,9 @@ public class SchachServer extends Server {
 				}
 			} else {
 				// ERSTELLE NEUE SESSION
-				log("Creating Session" + session + " for " + client);
+				log("Creating Session [" + session + "] for " + client);
 				Brett brett = new Brett(this, session);
+				client.session = session;
 				brett.spielerWeiß = client;
 				sessions.put(session, brett);
 			}
@@ -52,7 +54,7 @@ public class SchachServer extends Server {
 		if (pMessage.startsWith("m")) {
 			Brett brett = sessions.get(client.session);
 			if (client.equals(brett.getCurrentSpieler())) {
-				brett.move(pMessage.split("#")[1], pMessage.split("#")[0]);
+				brett.move(pMessage.split("#")[1], pMessage.split("#")[2]);
 			}
 		}
 	}

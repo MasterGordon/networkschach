@@ -30,7 +30,10 @@ public class MainClient {
 				weiß = false;
 			else
 				weiß = true;
-			//fw.dispose();
+			try {
+				fw.dispose();
+			} catch (Exception e) {
+			}
 			fg = new FrameSpielbrett(this);
 			fg.setVisible(true);
 			fg.update(pMessage);
