@@ -1,8 +1,9 @@
 package schach.server;
 
-
 public class Brett {
 	Figur[][] figuren;
+	SchachClient spielerSchwarz;
+	SchachClient spielerWeiﬂ;
 
 	public Brett() {
 		figuren = new Figur[8][8];
@@ -26,11 +27,24 @@ public class Brett {
 		figuren[7][6] = new Springer(false, 6);
 		figuren[7][7] = new Turm(false, 7);
 		for (int i = 0; i < 8; i++) {
-			figuren[6][i] = new Turm(false, i);
+			figuren[6][i] = new Bauer(false, i);
 		}
 		for (int i = 0; i < 8; i++) {
-			figuren[1][i] = new Turm(true, i);
+			figuren[1][i] = new Bauer(true, i);
 		}
+	}
+
+	@Override
+	public String toString() {
+		String string = "";
+		for (int i = 0; i < 8; i++)
+			for (int j = 0; j < 8; j++) {
+				if (figuren[i][j] == null)
+					string += "0";
+				else
+					string += figuren[i][j].toString();
+			}
+		return string;
 	}
 
 }

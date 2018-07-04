@@ -13,6 +13,11 @@ public class Bauer extends Figur {
 			posy = 6;
 		}
 	}
+	
+	@Override
+	public String toString() {
+		return farbe?"P":"p";
+	}
 
 	public boolean bewegungErlaubt(int x, int y) {
 		if (farbe == true) {

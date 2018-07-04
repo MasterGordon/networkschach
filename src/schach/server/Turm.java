@@ -14,6 +14,11 @@ public class Turm extends Figur {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return farbe?"T":"t";
+	}
+	
 	public boolean bewegungErlaubt(int x, int y) {
 		if (x - posx != 0 && y - posy == 0) {
 			if (posx > x) {

@@ -1,15 +1,18 @@
 package schach.server;
 
-import java.util.UUID;
-
 public class SchachClient {
 	String ip;
 	int port;
-	UUID uuid;
+	int session;
+	SchachServer server;
 
-	public SchachClient(String ip, int port) {
+	public SchachClient(String ip, int port,SchachServer server) {
 		this.ip = ip;
 		this.port = port;
-		uuid = UUID.randomUUID();
+		this.server = server;
+	}
+	
+	public void send(String message) {
+		server.send(ip, port, message);
 	}
 }

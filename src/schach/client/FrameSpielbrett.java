@@ -83,7 +83,7 @@ public class FrameSpielbrett extends JFrame {
 		lblWhite.setBounds(532, 427, 152, 55);
 		contentPane.add(lblWhite);
 
-		timerLeft = new JLabel("time left: "+"0:00");
+		timerLeft = new JLabel("time left: " + "0:00");
 		timerLeft.setHorizontalAlignment(SwingConstants.CENTER);
 		timerLeft.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
 		timerLeft.setBounds(532, 152, 152, 55);
@@ -130,9 +130,9 @@ public class FrameSpielbrett extends JFrame {
 					}
 					timeTime++;
 					if (timeTime % 60 < 10)
-						timerTime.setText("time: "+timeTime / 60 + ":0" + timeTime % 60);
+						timerTime.setText("time: " + timeTime / 60 + ":0" + timeTime % 60);
 					else
-						timerTime.setText("time: "+timeTime / 60 + ":" + timeTime % 60);
+						timerTime.setText("time: " + timeTime / 60 + ":" + timeTime % 60);
 				}
 			}
 		}).start();
@@ -181,11 +181,13 @@ public class FrameSpielbrett extends JFrame {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
 				if (Character.isLowerCase(s.charAt(index))) {
-					buttons[i][j].setIcon(new ImageIcon(Toolkit.getDefaultToolkit().getImage(
-							FrameSpielbrett.class.getResource("/resources/white_" + split[2].charAt(index) + ".png"))));
+					buttons[i][j].setIcon(
+							new ImageIcon(Toolkit.getDefaultToolkit().getImage(FrameSpielbrett.class.getResource(
+									"/resources/white_" + Character.toLowerCase(split[2].charAt(index)) + ".png"))));
 				} else {
-					buttons[i][j].setIcon(new ImageIcon(Toolkit.getDefaultToolkit().getImage(
-							FrameSpielbrett.class.getResource("/resources/black_" + split[2].charAt(index) + ".png"))));
+					buttons[i][j].setIcon(
+							new ImageIcon(Toolkit.getDefaultToolkit().getImage(FrameSpielbrett.class.getResource(
+									"/resources/black_" + Character.toLowerCase(split[2].charAt(index)) + ".png"))));
 				}
 				index++;
 			}
@@ -206,9 +208,9 @@ public class FrameSpielbrett extends JFrame {
 					}
 					timeLeft--;
 					if (timeLeft % 60 < 10)
-						timerTime.setText("time left: "+timeLeft / 60 + ":0" + timeLeft % 60);
+						timerTime.setText("time left: " + timeLeft / 60 + ":0" + timeLeft % 60);
 					else
-						timerTime.setText("time left: "+timeLeft / 60 + ":" + timeLeft % 60);
+						timerTime.setText("time left: " + timeLeft / 60 + ":" + timeLeft % 60);
 				}
 			}
 		});

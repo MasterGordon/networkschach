@@ -14,6 +14,11 @@ public class Laeufer extends Figur {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return farbe?"R":"r";
+	}
+	
 	public boolean bewegungErlaubt(int x, int y) {
 		if ((x - posx) / (y - posy) == 1) {
 			if (posx > x) {

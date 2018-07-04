@@ -14,6 +14,11 @@ public class Springer extends Figur {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return farbe?"H":"h";
+	}
+	
 	public boolean bewegungErlaubt(int x, int y) {
 		if (((posx - x == 2 || posx - x == -2) && (posy - y == 1 || posy - y == -1))
 				|| ((posx - x == 1 || posx - x == -1) && (posy - y == 2 || posy - y == -2))) {

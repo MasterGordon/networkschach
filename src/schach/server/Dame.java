@@ -14,6 +14,11 @@ public class Dame extends Figur {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return farbe?"Q":"q";
+	}
+	
 	public boolean bewegungErlaubt(int x, int y) {
 		// Laeuferbewegung
 		if ((x - posx) / (y - posy) == 1) {

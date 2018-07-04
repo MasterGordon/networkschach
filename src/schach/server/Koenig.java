@@ -14,6 +14,11 @@ public class Koenig extends Figur {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return farbe?"K":"k";
+	}
+	
 	public boolean bewegungErlaubt(int x, int y) {
 
 		if (y <= posy + 1 && y >= posy - 1 && x <= posx + 1 && x <= posx - 1 && koenigAbfrage(x, y) == false) {
