@@ -1,5 +1,6 @@
-package schach.server;
+package schach.server.figuren;
 
+import schach.server.Brett;
 
 public abstract class Figur {
 	Brett brett;

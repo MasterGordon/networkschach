@@ -1,4 +1,4 @@
-package schach.server;
+package schach.server.figuren;
 
 
 public class Dame extends Figur {

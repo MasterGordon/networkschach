@@ -15,4 +15,9 @@ public class SchachClient {
 	public void send(String message) {
 		server.send(ip, port, message);
 	}
+	
+	public void close() {
+		server.closeConnection(ip, port);
+		server.connectedClients.remove(ip+":"+port);
+	}
 }

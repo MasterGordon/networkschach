@@ -1,9 +1,9 @@
-package schach.server;
+package schach.server.figuren;
 
 
-public class Turm extends Figur {
+public class Laeufer extends Figur {
 
-	public Turm(boolean weiß, int x) {
+	public Laeufer(boolean weiß, int x) {
 		super();
 		farbe = weiß;
 		posx = x;
@@ -16,42 +16,43 @@ public class Turm extends Figur {
 
 	@Override
 	public String toString() {
-		return farbe?"T":"t";
+		return farbe?"R":"r";
 	}
 	
 	public boolean bewegungErlaubt(int x, int y) {
-		if (x - posx != 0 && y - posy == 0) {
+		if ((x - posx) / (y - posy) == 1) {
 			if (posx > x) {
 				for (int i = 0; i < posx - x - 1; i++) {
-					if (brett.figuren[posx - i][y] != null) {
+					if (brett.figuren[posx - i][posy - i] != null) {
 						return false;
 					}
 				}
 				return true;
 			}
 			for (int i = 0; i < x - posx - 1; i++) {
-				if (brett.figuren[posx + i][y] != null) {
+				if (brett.figuren[posx + i][posy + i] != null) {
 					return false;
 				}
 			}
 			return true;
 		}
-		if (x - posx == 0 && y - posy != 0) {
-			if (posy > y) {
-				for (int i = 0; i < posy - y - 1; i++) {
-					if (brett.figuren[x][posy - i] != null) {
+		if ((x - posx) / (y - posy) == -1) {
+			if (posx > x) {
+				for (int i = 0; i < posx - x - 1; i++) {
+					if (brett.figuren[posx - i][posy + i] != null) {
 						return false;
 					}
 				}
 				return true;
 			}
-			for (int i = 0; i < y - posy - 1; i++) {
-				if (brett.figuren[x][posy + i] != null) {
+			for (int i = 0; i < x - posx - 1; i++) {
+				if (brett.figuren[posx + i][posy - i] != null) {
 					return false;
 				}
 			}
 			return true;
 		}
+
 		return false;
 	}
 
@@ -63,15 +64,19 @@ public class Turm extends Figur {
 				switch (j) {
 				case 0:
 					x++;
+					y++;
 					break;
 				case 1:
 					x--;
+					y++;
 					break;
 				case 2:
 					y++;
+					x--;
 					break;
 				case 3:
 					y--;
+					x--;
 					break;
 				}
 			}
@@ -81,5 +86,4 @@ public class Turm extends Figur {
 		}
 		return false;
 	}
-
 }

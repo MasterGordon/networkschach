@@ -1,8 +1,16 @@
 package schach.server;
 
+import schach.server.figuren.Bauer;
+import schach.server.figuren.Dame;
+import schach.server.figuren.Figur;
+import schach.server.figuren.Koenig;
+import schach.server.figuren.Laeufer;
+import schach.server.figuren.Springer;
+import schach.server.figuren.Turm;
+
 public class Brett {
 	boolean werIstDran = true;//true = weiﬂ
-	Figur[][] figuren;
+	public Figur[][] figuren;
 	SchachClient spielerSchwarz;
 	SchachClient spielerWeiﬂ;
 	SchachServer server;
@@ -60,6 +68,7 @@ public class Brett {
 					spielerSchwarz.send("r#1");
 					spielerWeiﬂ.send("r#0");
 				}
+				server.closeGame(session);
 			}
 			figuren[toX][toY] = figuren[fromX][fromY];
 			figuren[fromX][fromY] = null;
