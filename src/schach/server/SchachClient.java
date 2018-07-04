@@ -20,4 +20,9 @@ public class SchachClient {
 		server.closeConnection(ip, port);
 		server.connectedClients.remove(ip+":"+port);
 	}
+	
+	@Override
+	public String toString() {
+		return ip+":"+port;
+	}
 }

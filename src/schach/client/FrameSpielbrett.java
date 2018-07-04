@@ -34,28 +34,17 @@ public class FrameSpielbrett extends JFrame {
 	private JLabel timerTime;
 	private int timeLeft;
 	private int timeTime;
+	private MainClient client;
 	Thread threadTimeLeftTimer = null;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FrameSpielbrett frame = new FrameSpielbrett();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public FrameSpielbrett() {
+	public FrameSpielbrett(MainClient mainc) {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
@@ -63,6 +52,7 @@ public class FrameSpielbrett extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		client = mainc;
 		setTitle("Schach - Ingame");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameLogin.class.getResource("/resources/chess-icon.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -142,6 +132,7 @@ public class FrameSpielbrett extends JFrame {
 	public void send(String from, String to) {
 		String packet = "m#" + from + "#" + to;
 		firstButton.setBackground(null);
+		client.client.send(packet);
 		System.out.println(packet);
 	}
 

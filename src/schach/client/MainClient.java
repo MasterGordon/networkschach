@@ -27,7 +27,7 @@ public class MainClient {
 			else
 				weiﬂ = true;
 			fw.dispose();
-			fg = new FrameSpielbrett();
+			fg = new FrameSpielbrett(this);
 			fg.update(pMessage);
 			// SPIELBRETT UPDATE
 		} else if (message[0] == "b") {

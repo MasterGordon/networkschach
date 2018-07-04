@@ -11,7 +11,7 @@ public class SchachServer extends Server {
 
 	public SchachServer(int pPort) {
 		super(pPort);
-		// TODO Auto-generated constructor stub
+		log("Server Created!");
 	}
 
 	@Override
@@ -31,12 +31,14 @@ public class SchachServer extends Server {
 			int session = Integer.parseInt(pMessage.split("#")[1]);
 			if (sessions.containsKey(session)) {
 				// F‹RGE CLIENT ZU SESSION + STARTE SESSION
+				log("Joining Session"+session+" "+client);
 				Brett brett = sessions.get(session);
 				brett.spielerSchwarz = client;
 				brett.spielerSchwarz.send("i#1#" + brett.toString() + "#0");
 				brett.spielerWeiﬂ.send("i#1#" + brett.toString() + "#1");
 			} else {
 				// ERSTELLE NEUE SESSION
+				log("Creating Session"+session+" for "+client);
 				Brett brett = new Brett(this, session);
 				brett.spielerWeiﬂ = client;
 				sessions.put(session, brett);
