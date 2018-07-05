@@ -13,6 +13,8 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class FrameLogin extends JFrame {
 
@@ -82,6 +84,15 @@ public class FrameLogin extends JFrame {
 		lblStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				main.connect(label.getText(), textField.getText(), textField_1.getText());
+			}
+		});
+		this.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				System.out.println(e.getKeyCode());
+				if(e.getKeyCode()==10) {
+					main.connect(label.getText(), textField.getText(), textField_1.getText());
+				}
 			}
 		});
 		lblStart.setHorizontalAlignment(SwingConstants.CENTER);

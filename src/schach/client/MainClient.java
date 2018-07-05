@@ -31,6 +31,7 @@ public class MainClient {
 			else
 				weiß = true;
 			try {
+				Thread.sleep(100);
 				fw.dispose();
 			} catch (Exception e) {
 			}
@@ -43,20 +44,38 @@ public class MainClient {
 			fg.update(pMessage);
 			// FEHLER NACHRICHT
 		} else if (message[0].equals("e")) {
-			fg.setBackground(Color.RED);
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if(fg!=null) {
+				fg.setBackground(Color.RED);
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				fg.setBackground(null);
 			}
-			fg.setBackground(null);
+			if(message[1].startsWith("2"))
+				System.exit(-1);
 			// ERGEBNISS NACHRICHT
 		} else if (message[0].equals("r")) {
 			if (message[1].equals("1")) {
 				System.out.println("Du hast gewonnen!");
+				if(weiß) {
+					fg.lblWhite.setForeground(Color.GREEN);
+					fg.lblBlack.setForeground(Color.RED);
+				}else {
+					fg.lblWhite.setForeground(Color.RED);
+					fg.lblBlack.setForeground(Color.GREEN);
+				}
 			} else {
 				System.out.println("Du hast verloren!");
+				if(weiß) {
+					fg.lblWhite.setForeground(Color.RED);
+					fg.lblBlack.setForeground(Color.GREEN);
+				}else {
+					fg.lblWhite.setForeground(Color.GREEN);
+					fg.lblBlack.setForeground(Color.RED);
+				}
 			}
 		}
 	}
@@ -69,7 +88,12 @@ public class MainClient {
 				instance.processMessage(pMessage);
 			}
 		};
-			
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		client.send("c#" + session);
 		instance.fl.dispose();
 		fw = new FrameWait();

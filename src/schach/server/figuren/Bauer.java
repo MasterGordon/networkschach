@@ -1,9 +1,12 @@
 package schach.server.figuren;
 
+import schach.server.Brett;
+
 public class Bauer extends Figur {
 
-	public Bauer(boolean weiß, int x) {
+	public Bauer(boolean weiß, int x,Brett brett) {
 		super();
+		this.brett = brett;
 		farbe = weiß;
 		posx = x;
 		if (farbe == true) {
@@ -18,6 +21,23 @@ public class Bauer extends Figur {
 		return farbe ? "P" : "p";
 	}
 
+//	public boolean bewegungErlaubt(int x, int y) {
+//		int dx = posx-x;
+//		int dy = posy-y;
+//		Figur target = brett.figuren[x][y];
+//		if (farbe == true) {
+//			if(dy==1&&dx==0&&target==null)
+//				return true;
+//			if(posy==1&&dy==2&&dx==0&&target==null)
+//				return true;
+//			if(dy==1&&dx==1&&target!=null)
+//				return true;
+//		}else {
+//			
+//		}
+//		return false;
+//	}
+	
 	public boolean bewegungErlaubt(int x, int y) {
 		System.out.println(x + " " + y);
 		if (farbe == true) {

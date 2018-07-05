@@ -40,6 +40,7 @@ public class SchachServer extends Server {
 					brett.spielerWeiß.send("i#1#" + brett.toString() + "#1");
 				} else {
 					client.send("e#2");
+					client.close();
 				}
 			} else {
 				// ERSTELLE NEUE SESSION
@@ -62,19 +63,17 @@ public class SchachServer extends Server {
 	@Override
 	public void processClosingConnection(String pClientIP, int pClientPort) {
 		SchachClient client = connectedClients.get(pClientIP + ":" + pClientPort);
-		Brett brett = sessions.get(client.session);
-		try {
+		log(pClientIP + ":" + pClientPort+" has disconnected!");
+		if(client != null) {
+			Brett brett = sessions.get(client.session);
 			if (brett.spielerSchwarz.equals(client)) {
-				brett.spielerSchwarz.send("r#0");
 				brett.spielerWeiß.send("r#1");
 				closeGame(client.session);
 			} else {
 				brett.spielerSchwarz.send("r#1");
-				brett.spielerWeiß.send("r#0");
 				closeGame(client.session);
 			}
-		} catch (Exception e) {
-			client.close();
+			connectedClients.remove(pClientIP+":"+pClientPort);
 		}
 	}
 
@@ -84,10 +83,9 @@ public class SchachServer extends Server {
 
 	public void closeGame(int session) {
 		Brett brett = sessions.get(session);
-		if (connectedClients.values().contains(brett.spielerSchwarz))
-			brett.spielerSchwarz.close();
-		if (connectedClients.values().contains(brett.spielerWeiß))
-			brett.spielerWeiß.close();
+		brett.log("Closing Session");
+		brett.spielerSchwarz.close();
+		brett.spielerWeiß.close();
 		sessions.remove(session);
 	}
 }

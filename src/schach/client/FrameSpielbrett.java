@@ -1,7 +1,6 @@
 package schach.client;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,8 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
-
-import schach.api.ColorIcon;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -31,8 +28,8 @@ public class FrameSpielbrett extends JFrame {
 	private boolean firstClick = false;
 	private JButton firstButton = null;
 	private String firstCoord = "";
-	private JLabel lblBlack;
-	private JLabel lblWhite;
+	JLabel lblBlack;
+	JLabel lblWhite;
 	private JLabel timerLeft;
 	private JLabel timerTime;
 	private int timeLeft;
@@ -48,6 +45,7 @@ public class FrameSpielbrett extends JFrame {
 	 * Create the frame.
 	 */
 	public FrameSpielbrett(MainClient mainc) {
+		setResizable(false);
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
@@ -59,7 +57,7 @@ public class FrameSpielbrett extends JFrame {
 		setTitle("Schach - Ingame");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrameLogin.class.getResource("/resources/chess-icon.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 710, 532);
+		setBounds(100, 100, 710, 560);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -74,27 +72,26 @@ public class FrameSpielbrett extends JFrame {
 		lblWhite = new JLabel("White");
 		lblWhite.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWhite.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
-		lblWhite.setBounds(532, 427, 152, 55);
+		lblWhite.setBounds(532, 443, 152, 55);
 		contentPane.add(lblWhite);
 
 		timerLeft = new JLabel("time left: " + "0:00");
 		timerLeft.setHorizontalAlignment(SwingConstants.CENTER);
 		timerLeft.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
-		timerLeft.setBounds(532, 152, 152, 55);
+		timerLeft.setBounds(532, 190, 152, 55);
 		contentPane.add(timerLeft);
 
 		timerTime = new JLabel("time: 0:00");
 		timerTime.setHorizontalAlignment(SwingConstants.CENTER);
 		timerTime.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
-		timerTime.setBounds(532, 234, 152, 55);
+		timerTime.setBounds(532, 272, 152, 55);
 		contentPane.add(timerTime);
 
 		buttons = new JButton[8][];
 		for (int i = 0; i < 8; i++) {
 			buttons[i] = new JButton[8];
 			for (int j = 0; j < 8; j++) {
-				JButton button = new JButton(
-						(i + j) % 2 == 0 ? new ColorIcon(Color.BLACK, 64, 64) : new ColorIcon(Color.WHITE, 64, 64));
+				JButton button = new JButton();
 				button.setBounds(10 + 64 * i, 10 + 64 * j, 64, 64);
 				contentPane.add(button);
 				button.addActionListener(new ActionListener() {
@@ -166,11 +163,11 @@ public class FrameSpielbrett extends JFrame {
 		System.out.println("UPDATE");
 		String[] split = s.split("#");
 		if (split[1].equals("0")) {
-			lblBlack.setForeground(Color.RED);
-			lblWhite.setForeground(null);
+			lblBlack.setText("> Schwarz <");
+			lblWhite.setText("Weiß");
 		} else {
-			lblWhite.setForeground(Color.RED);
-			lblBlack.setForeground(null);
+			lblBlack.setText("Schwarz");
+			lblWhite.setText("> Weiß <");
 		}
 		int index = 0;
 		s = split[2];

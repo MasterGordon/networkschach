@@ -40,11 +40,12 @@ public class Brett {
 		figuren[7][6] = new Springer(false, 6);
 		figuren[7][7] = new Turm(false, 7);
 		for (int i = 0; i < 8; i++) {
-			figuren[6][i] = new Bauer(false, i);
+			figuren[6][i] = new Bauer(false, i, this);
 		}
 		for (int i = 0; i < 8; i++) {
-			figuren[1][i] = new Bauer(true, i);
+			figuren[1][i] = new Bauer(true, i, this);
 		}
+		log("Created!");
 	}
 
 	public void sendUpdate() {
@@ -58,30 +59,49 @@ public class Brett {
 		int fromY = Integer.parseInt(from.split(",")[1]);
 		int toX = Integer.parseInt(to.split(",")[0]);
 		int toY = Integer.parseInt(to.split(",")[1]);
-		if(figuren[fromX][fromY]==null) {
-			getCurrentSpieler().send("e#0");
+		if (figuren[fromX][fromY] == null) {
+			getCurrentSpieler().send("e#404");
 			return;
 		}
-		log(fromX+","+fromY+" "+toX+","+toY);
-		try {
-			if (!figuren[fromX][fromY].bewegungErlaubt(toX, toY)) {
-				if (figuren[toX][toY] instanceof Koenig) {
-					// SPIELER HAT GEWONNEN
-					getNotCurrentSpieler().send("r#0");
-					getCurrentSpieler().send("r#1");
-					
-					server.closeGame(session);
-				}
-				figuren[toX][toY] = figuren[fromX][fromY];
-				figuren[fromX][fromY] = null;
-				sendUpdate();
-				werIstDran = !werIstDran;
-			} else {
-				getCurrentSpieler().send("e#0");
+		//log(fromX + "," + fromY + " " + toX + "," + toY);
+		// if (figuren[fromX][fromY].bewegungErlaubt(toX, toY)) {
+		if (true) {
+			boolean win = false;
+			if (figuren[toX][toY] instanceof Koenig) {
+				// SPIELER HAT GEWONNEN
+				getNotCurrentSpieler().send("r#0");
+				getCurrentSpieler().send("r#1");
+				win = true;
 			}
-		} catch (Exception e) {
-			getCurrentSpieler().send("e#0");
-		}
+			figuren[toX][toY] = figuren[fromX][fromY];
+			figuren[fromX][fromY] = null;
+			werIstDran = !werIstDran;
+			sendUpdate();
+			if(win)
+				server.closeGame(session);
+		} 
+//		else {
+//			getCurrentSpieler().send("e#0");
+//		}
+//		try {
+//			if (!figuren[fromX][fromY].bewegungErlaubt(toX, toY)) {
+//				if (figuren[toX][toY] instanceof Koenig) {
+//					// SPIELER HAT GEWONNEN
+//					getNotCurrentSpieler().send("r#0");
+//					getCurrentSpieler().send("r#1");
+//					
+//					server.closeGame(session);
+//				}
+//				figuren[toX][toY] = figuren[fromX][fromY];
+//				figuren[fromX][fromY] = null;
+//				sendUpdate();
+//				werIstDran = !werIstDran;
+//			} else {
+//				getCurrentSpieler().send("e#0");
+//			}
+//		} catch (Exception e) {
+//			getCurrentSpieler().send("e#0");
+//		}
 	}
 
 	@Override
@@ -110,9 +130,9 @@ public class Brett {
 		else
 			return spielerSchwarz;
 	}
-	
+
 	public void log(String s) {
-		System.out.println("["+session+"] "+s);
+		System.out.println("[" + session + "] " + s);
 	}
 
 }

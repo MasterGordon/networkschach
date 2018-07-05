@@ -17,8 +17,14 @@ public class SchachClient {
 	}
 	
 	public void close() {
-		server.closeConnection(ip, port);
-		server.connectedClients.remove(ip+":"+port);
+		if(server.connectedClients.containsKey(ip+":"+port)) {
+			server.connectedClients.remove(ip+":"+port);
+			server.closeConnection(ip, port);
+		}
+	}
+	
+	public boolean isConnected() {
+		return server.connectedClients.containsKey(ip+":"+port);
 	}
 	
 	@Override
