@@ -66,13 +66,12 @@ public class SchachServer extends Server {
 		log(pClientIP + ":" + pClientPort+" has disconnected!");
 		if(client != null) {
 			Brett brett = sessions.get(client.session);
-			if (brett.spielerSchwarz.equals(client)) {
+			if (client.equals(brett.spielerSchwarz)) {
 				brett.spielerWeiß.send("r#1");
-				closeGame(client.session);
 			} else {
 				brett.spielerSchwarz.send("r#1");
-				closeGame(client.session);
 			}
+			closeGame(client.session);
 			connectedClients.remove(pClientIP+":"+pClientPort);
 		}
 	}
